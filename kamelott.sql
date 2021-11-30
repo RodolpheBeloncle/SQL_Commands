@@ -61,6 +61,21 @@ select round(avg(age),0) from person;
 +-------------------+
 
 ===============================================
+ La moyenne est un peu haute non ?
+Ecrire la requête qui permet d'afficher la moyenne de tous les personnages n’ayant pas le rôle de magicien
+
+SELECT AVG(age) FROM Person 
+JOIN Role ON Role.id = Person.role_id 
+WHERE role.role != "Magicien";
+
+
++----------+
+| AVG(age) |
++----------+
+|  35.7143 |
++----------+
+
+===============================================
 
 Ecrire la requête qui permet d'afficher
 Le nombre de personnage par royaume 
@@ -68,6 +83,13 @@ Le nombre de personnage par royaume
 
 select name,count(kingdom_id) from person
 right join kingdom on kingdom.id = person.kingdom_id group by name;
+
+/
+
+SELECT name AS kingdom, count(Person.id) AS nb_person 
+FROM Kingdom
+LEFT JOIN Person ON Person.kingdom_id = Kingdom.id
+GROUP BY name;
 
 +-----------+-------------------+
 | name      | count(kingdom_id) |
@@ -129,6 +151,13 @@ select name,count(kingdom_id) from person
 right join kingdom on kingdom.id = person.kingdom_id group by name 
 having count(kingdom_id) >=2;
 
+/
+
+SELECT name AS kingdom_name, COUNT(p.id) AS nb_person
+FROM Person p
+JOIN Kingdom k ON p.kingdom_id = k.id
+GROUP BY kingdom_name
+HAVING nb_person >= 2;
 +-----------+-------------------+
 | name      | count(kingdom_id) |
 +-----------+-------------------+
