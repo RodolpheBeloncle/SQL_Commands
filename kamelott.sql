@@ -4,18 +4,21 @@ Le prénom, nom des personnages ainsi que leur royaume,
 select firstname,name from person
 join kingdom on kingdom.id=person.kingdom_id;
 
-+-------------+-----------+
-| firstname   | name      |
-+-------------+-----------+
-| Arthur      | Logre     |
-| Calogrenant | Caledonie |
-| Guenièvre   | Carmelide |
-| Leodagan    | Carmelide |
-| Yvain       | Carmelide |
-| Caradoc     | Vannes    |
-| Mevanwi     | Vannes    |
-| Perceval    | Galles    |
-+-------------+-----------+
++-------------+---------------+-----+
+| firstname   | lastname      | age |
++-------------+---------------+-----+
+| Arthur      | Pendragon     |  35 |
+| Guenièvre   | NULL          |  30 |
+| Merlin      | NULL          | 850 |
+| Perceval    | NULL          |  36 |
+| Caradoc     | NULL          |  32 |
+| Calogrenant | NULL          |  44 |
+| Leodagan    | NULL          |  47 |
+| Lancelot    | Du Lac        |  33 |
+| Elias       | De Kelliwic'h |  52 |
+| Mevanwi     |               |  28 |
+| Yvain       |               |  23 |
++-------------+---------------+-----+
 
 ==================================================
 
