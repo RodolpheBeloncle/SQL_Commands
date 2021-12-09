@@ -1,0 +1,24 @@
+========== alter table add column foreign key ==============
+
+-- On Create
+CREATE TABLE tableName (
+    ID INT,
+    SomeEntityID INT,
+    PRIMARY KEY (ID),
+    FOREIGN KEY (SomeEntityID)
+        REFERENCES SomeEntityTable(ID)
+        ON DELETE CASCADE
+);
+
+-- On Alter, if the column already exists but has no FK
+ALTER TABLE
+  tableName
+ADD
+  FOREIGN KEY (SomeEntityID) REFERENCES SomeEntityTable(ID) ON DELETE CASCADE;
+  
+ -- Add FK with a specific name
+ -- On Alter, if the column already exists but has no FK
+ALTER TABLE
+  tableName
+ADD CONSTRAINT fk_name
+  FOREIGN KEY (SomeEntityID) REFERENCES SomeEntityTable(ID) ON DELETE CASCADE;
