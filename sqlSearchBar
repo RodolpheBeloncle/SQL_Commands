@@ -1,0 +1,51 @@
+=== model ===
+
+const findWineMatch = ({name}) => {
+ 
+  return dataBase.query(`SELECT * FROM Wines w INNER JOIN WinePairings wp ON w.id = wp.WineId INNER JOIN Dishes d on wp.DisheId = d.id WHERE w.name LIKE ?`, [`%${name}%`]);
+  };
+ === router ===
+ 
+ cellarRouter.get('/search', async (req, res) => {
+    const [name] = await match.findWineMatch(req.query);
+    return res.json(name);
+  });
+
+
+=== vue ===
+
+ components:
+ 
+ SearBar =>
+ 
+ <form action="/" method="get" onSubmit={onSubmit}>
+      <label htmlFor="header-search">
+        <span className="visually-hidden">Search blog posts</span>
+      </label>
+      <input
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        type="text"
+        id="header-search"
+        placeholder="Search wine matches"
+
+      />
+      <button type="submit">Search</button>
+    </form>
+    =================
+    
+    <Search
+        onSubmit={(e) => handleSubmit(e)}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+      />
+      <span>
+        {searchQuery &&
+          wineMatch.map((match) => (
+            <WinePairing
+              image={match.image}
+              name={match.name}
+              type={match.type}
+            />
+          ))}
+      </span>
